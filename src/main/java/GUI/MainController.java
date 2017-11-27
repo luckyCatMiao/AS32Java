@@ -1,6 +1,6 @@
 package GUI;
 
-import Converter.AS32J;
+import Converter.AS32Java;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.TextArea;
@@ -34,7 +34,7 @@ public class MainController extends BaseController{
 	public void pressButton()
 	{
 		String source=sourceTA.getText();
-		String result=AS32J.convert(source);
+		String result= AS32Java.convert(source);
 		targetTA.setText(result);
 		
 	}

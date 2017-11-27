@@ -3,7 +3,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-public class AS32J {
+public class AS32Java {
     static public String getContents(File file) {
         StringBuffer contents = new StringBuffer();
         try {
@@ -40,6 +40,10 @@ public class AS32J {
         f=f.replaceAll("([a-z]*)\\s+function\\s+(\\w*)\\s*\\Q(\\E\\s*"
                 +"([^)]*)"
                 +"\\s*\\Q)\\E(\\s*\\{)","$1 $2(%#$3%#)$4");
+
+        //get set
+        f=f.replaceAll("function\\s+(get|set)\\s+(\\w+?)\\(","function $1$2(");
+
         // functions
         f=f.replaceAll("([a-z]*)\\s+function\\s+(\\w*)\\s*\\Q(\\E\\s*"
                 +"([^)]*)"
@@ -67,6 +71,12 @@ public class AS32J {
 
         f=f.replaceAll("(\\w+)\\s+as\\s+(\\w+)","($2)$1");
         f=f.replaceAll("int\\s*\\Q(\\E([^)]+)\\Q)\\E","((int)$1)");
+
+        //remove package {}
+        f=f.replaceAll("package ([^{]+)\\{([\\s\\S]+)\\}","package $1;$2");
+
+
+
        
         return f;
 		
